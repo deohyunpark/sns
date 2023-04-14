@@ -26,6 +26,10 @@ application.properties
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+**/front-end/node_modules/**
+**/front-end/static/**
+.github/workflows/deploy.yml
+
 
 ### NetBeans ###
 /nbproject/private/
