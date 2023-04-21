@@ -2,6 +2,7 @@ package com.snsapplication.project.sns.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snsapplication.project.sns.controller.request.UserJoinRequest;
+import com.snsapplication.project.sns.exception.ErrorCode;
 import com.snsapplication.project.sns.exception.SnsApplicationException;
 import com.snsapplication.project.sns.model.User;
 import com.snsapplication.project.sns.controller.request.UserLoginRequest;
@@ -49,7 +50,7 @@ public class UserControllerTest {
         String userName = "username";
         String password = "password";
 
-        when(userService.join(userName,password)).thenThrow(new SnsApplicationException());
+        when(userService.join(userName,password)).thenThrow(new SnsApplicationException(ErrorCode.DUPLICATED_USER_NAME));
         mockMvc.perform(post("/api/v1/users/join")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsBytes(new UserJoinRequest(userName, password)))
@@ -76,7 +77,7 @@ public class UserControllerTest {
         String userName = "username";
         String password = "password";
 
-        when(userService.login(userName,password)).thenThrow(new SnsApplicationException());
+        when(userService.login(userName,password)).thenThrow(new SnsApplicationException(ErrorCode.USER_NOT_FOUNDED));
 
         mockMvc.perform(post("/api/v1/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -90,7 +91,7 @@ public class UserControllerTest {
         String userName = "username";
         String password = "password";
 
-        when(userService.login(userName,password)).thenThrow(new SnsApplicationException());
+        when(userService.login(userName,password)).thenThrow(new SnsApplicationException(ErrorCode.INVALID_PASSWORD));
 
         mockMvc.perform(post("/api/v1/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
