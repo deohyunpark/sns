@@ -8,6 +8,7 @@ import com.snsapplication.project.sns.model.User;
 import com.snsapplication.project.sns.controller.response.UserLoginResponse;
 import com.snsapplication.project.sns.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

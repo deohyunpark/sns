@@ -1,7 +1,10 @@
 package com.snsapplication.project.sns.controller;
 
 import com.snsapplication.project.sns.controller.request.PostCreateRequest;
+import com.snsapplication.project.sns.controller.request.PostModifyRequest;
+import com.snsapplication.project.sns.controller.response.PostResponse;
 import com.snsapplication.project.sns.controller.response.Response;
+import com.snsapplication.project.sns.model.Post;
 import com.snsapplication.project.sns.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -20,4 +23,15 @@ public class PostController {
         return Response.success();
     }
 
+    @PutMapping("/{postId}")
+    public Response<PostResponse> modify(@PathVariable Integer postId, @RequestBody PostModifyRequest request, Authentication authentication) {
+        Post post = postService.modify(request.getTitle(), request.getBody(), authentication.getName(), postId);
+        return Response.success(PostResponse.fromPost(post));
+    }
+
+    @DeleteMapping("/{postId}")
+    public Response<Void> delete(@PathVariable Integer postId, Authentication authentication) {
+        postService.delete(authentication.getName(), postId);
+        return Response.success();
+    }
 }

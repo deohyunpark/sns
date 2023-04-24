@@ -13,8 +13,6 @@ public enum ErrorCode {
     INVALID_PASSWORD(HttpStatus.UNAUTHORIZED,"비밀번호가 일치하지 않습니다."),
     POST_NOT_FOUND(HttpStatus.NOT_FOUND,"작성한 글을 찾을 수 없습니다."),
     INVALID_PERMISSION(HttpStatus.UNAUTHORIZED,"권한이 없는 요청입니다."),
-
-
     INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "토큰이 유효하지 않습니다."),;
 
     private HttpStatus status;
